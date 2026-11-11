@@ -1,6 +1,5 @@
 class Solution {
     public int numDifferentIntegers(String word) {
-        
         StringBuilder str = new StringBuilder();
         for(char x:word.toCharArray()){
             if(Character.isDigit(x)){
@@ -10,18 +9,23 @@ class Solution {
                 str.append(" ");
             }
         }
-        String[] arr = str.toString().split(" ");
-        Set<String> set  = new HashSet<>();
-        for(int i=0;i<arr.length;i++){
-            if(arr[i].isEmpty()){
+        // str = [" 123 34 8 34"];
+        String s = str.toString();
+        String[] arr = s.split(" +");
+        //arr = ["123", "34", "8", "34"]
+        Set<String> set = new HashSet<>();
+        for(String x:arr){
+            if(x.isEmpty()){
                 continue;
             }
-            arr[i] = arr[i].replaceFirst("^0+", "");
-            if(arr[i].isEmpty()){
-                arr[i] = "0";
+            x = x.replaceFirst("^0+","");
+            if(x.isEmpty()){
+                x = "0";
+        
             }
-            set.add(arr[i]);
+            set.add(x);
         }
         return set.size();
+        
     }
 }
