@@ -1,15 +1,14 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        int sum = 0;
+        Map<Integer,Integer> mp = new HashMap<>();
         for(int x:nums){
-            sum+=x;
+            mp.put(x,mp.getOrDefault(x,0)+1);
         }
-        int exp = 0;
-        int len = nums.length+1;
-        for(int i=0;i<len;i++){
-            exp+=i;
+        for(int i=0;i<nums.length+1;i++){
+            if(!mp.containsKey(i)){
+                return i;
+            }
         }
-        int ans = exp-sum;
-        return ans;
+        return -1;
     }
 }
